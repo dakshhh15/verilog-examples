@@ -6,7 +6,7 @@ module counter (output reg [3:0] q,
       q <= 0;
     end
   
-  always@(negedge clk)
+  always@(negedge clk or posedge rst)
     begin
       if (rst)
         q <= 0;
@@ -24,6 +24,7 @@ module tb;
   
   counter i1 ( .clk(CLK), .rst(RST), .q(Q));
   always #5 CLK = ~CLK;
+  always #50 RST = ~RST;
   
   initial
     begin
