@@ -9,7 +9,6 @@ endmodule
 
 //testbench
 
-`include "2x1_mux.v"
 module stimulus;
   reg A, B, S;
   wire OUT;
