@@ -12,8 +12,12 @@ Circuits in this repo:
 
 -> SR Latch using Nand and Nor Gates, Gated D Latch, Gated SR Latch.
 
--> SR Flip Flop, D Flip Flop, JK Flip Flop, Master-Slave JK Flip Flop.
+-> SR Flip Flop, D Flip Flop (Synchronous and Asynchronous Reset), JK Flip Flop (Synchronous and Asynchronous Inputs), Master-Slave JK Flip Flop, JK Flip Flop from D Flip Flop, T Flip Flop from D Flip Flop.
 
--> 4-bit Asynchronous Counter.
+-> 4-bit Asynchronous Counter, BCD Counter, mod-n Counter, n-bit Down Counter, n-bit Up Counter.
 
 -> Register swap w/o Temp reg.
+
+-> Mealy 1001 non overlapping FSM, Mealy 1010 overlapping FSM.
+
+-> n-bit Register, PISO Shift Register, SIPO Shift Register, SISO Shift Register (Behavioral and using D FF), Universal Shift Register (Behavioral and Structural).
