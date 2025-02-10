@@ -1,13 +1,12 @@
 //design
 module ALU_Decoder (output [2:0] ALUControl,
                     input [1:0] ALUOp,
-                    input op_5,
-                    input [2:0] funct3,
-                    input funct7_5);
+                    input [6:0] op, funct7,
+                    input [2:0] funct3);
   
   wire [1:0] int1;
   
-  assign int1 = {op_5, funct7_5};
+  assign int1 = {op[5], funct7[5]};
   
   assign ALUControl = (ALUOp == 2'b00) ? 3'b000 :
     (ALUOp == 2'b01) ? 3'b001 : 
