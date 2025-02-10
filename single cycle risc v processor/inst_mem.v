@@ -1,4 +1,4 @@
-module Instrunction_Memory (output [31:0] RD,
+module Instruction_Memory (output [31:0] RD,
                             input [31:0] A,
                             input rst);
   
