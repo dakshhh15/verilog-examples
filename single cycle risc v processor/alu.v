@@ -2,7 +2,7 @@
 module alu (output [31:0] Result,
             output z, n, c, v,
             input [31:0] A, B,
-            input [2:0] ALU_Control);
+            input [2:0] ALUControl);
   
   wire [31:0] sum;
   wire [31:0] and_out, or_out;
@@ -15,20 +15,20 @@ module alu (output [31:0] Result,
   assign or_out = A | B;
 
   assign sub = A - B;
-  assign {cout, sum} = (ALU_Control[0]) ? sub : (A+B);
+  assign {cout, sum} = (ALUControl[0]) ? sub : (A+B);
   
   assign sign_ext = { 31'b0000000000000000000000000000000 , sum[31] };
   
-  assign mux2_out = (ALU_Control[2:0] == 3'b000) ? sum : 
-    (ALU_Control[2:0] == 3'b001) ? sum :
-    (ALU_Control[2:0] == 3'b010) ? and_out :
-    (ALU_Control[2:0] == 3'b011) ? or_out : 
-    (ALU_Control[2:0] == 3'b101) ? sign_ext : 32'h00000000;
+  assign mux2_out = (ALUControl[2:0] == 3'b000) ? sum : 
+    (ALUControl[2:0] == 3'b001) ? sum :
+    (ALUControl[2:0] == 3'b010) ? and_out :
+    (ALUControl[2:0] == 3'b011) ? or_out : 
+    (ALUControl[2:0] == 3'b101) ? sign_ext : 32'h00000000;
   
   assign Result = mux2_out;
   
-  assign c = (~ALU_Control[1]) & cout;
-  assign v = (~ALU_Control[1]) & (A[31] ^ sum[31]) & (~(A[31]) ^ B[31] ^ ALU_Control[0]);
+  assign c = (~ALUControl[1]) & cout;
+  assign v = (~ALUControl[1]) & (A[31] ^ sum[31]) & (~(A[31]) ^ B[31] ^ ALUControl[0]);
   assign z = &(~Result);
   assign n = Result[31];
   
@@ -42,7 +42,7 @@ module tb_alu;
   wire [31:0] RESULT;
   integer i,j,k;
   
-  alu i1 (.A(A), .B(B), .ALU_Control(ALU_CONTROL), .z(Z), .n(N), .c(C), .v(V), .Result(RESULT));
+  alu i1 (.A(A), .B(B), .ALUControl(ALU_CONTROL), .z(Z), .n(N), .c(C), .v(V), .Result(RESULT));
   
   initial
     begin
