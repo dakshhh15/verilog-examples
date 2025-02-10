@@ -1,11 +1,11 @@
 //design
 module Data_Memory (output [31:0] RD,
-                    input clk, WE,
+                    input clk, WE, rst,
                     input [31:0] A, WD);
   
   reg [31:0] data_mem [1023:0];
   
-  assign RD = (WE==0) ? data_mem[A] : 32'h00000000;
+  assign RD = (rst) ? data_mem[A] : 32'h00000000;
   
   always@(posedge clk)
     begin
