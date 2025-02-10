@@ -1,5 +1,5 @@
 //design
-module ALU_Decoder (output [2:0] ALU_Control,
+module ALU_Decoder (output [2:0] ALUControl,
                     input [1:0] ALUOp,
                     input op_5,
                     input [2:0] funct3,
@@ -9,7 +9,7 @@ module ALU_Decoder (output [2:0] ALU_Control,
   
   assign int1 = {op_5, funct7_5};
   
-  assign ALU_Control = (ALUOp == 2'b00) ? 3'b000 :
+  assign ALUControl = (ALUOp == 2'b00) ? 3'b000 :
     (ALUOp == 2'b01) ? 3'b001 : 
     ((ALUOp == 2'b10) & (funct3 == 3'b000) & (int1 == !2'b11)) ? 3'b000 :
     ((ALUOp == 2'b10) & (funct3 == 3'b000) & (int1 == 2'b11)) ? 3'b001 :
@@ -29,7 +29,7 @@ module tb;
   reg funct7_5;
   wire [2:0] ALU_Control;
   
-  ALU_Decoder i1 (.ALUOp(ALUOp), .op_5(op_5), .funct3(funct3), .funct7_5(funct7_5), .ALU_Control(ALU_Control));
+  ALU_Decoder i1 (.ALUOp(ALUOp), .op_5(op_5), .funct3(funct3), .funct7_5(funct7_5), .ALUControl(ALU_Control));
   
   initial
     begin
